@@ -67,7 +67,6 @@ function ToDoList({value, del, upd}){
   )
 }
 
-
 function UpdateModal({visible, updater, value, ochandler }){
   return(
     <div className="modal">
