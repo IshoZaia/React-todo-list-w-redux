@@ -31,6 +31,7 @@ function App({items, add, remove, update}) {
   const updateChange = (changeText) => {
     if (updateText.trim() === ""){
       setModErr(true)
+      setUpdateText("")
     }
     else{
       update(ind, changeText);
@@ -43,6 +44,7 @@ function App({items, add, remove, update}) {
  const insertItem = () => {
   if (text.trim() === ""){
     setErr(true)
+    setText("")
   }else{
     add(text)
     setText("")
