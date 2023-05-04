@@ -55,8 +55,8 @@ function App({items, add, remove, update}) {
   return (
     <div className="App">
       <h1>To-Do List w/Redux</h1><br/>
-      <div className="input-btn">
       {err && <h4>Enter something before submitting</h4>}
+      <div className="input-btn">
       <input
         id="input"
         name="text"
@@ -64,11 +64,12 @@ function App({items, add, remove, update}) {
         value={text}
         type="text"
         placeholder="Enter to-do Item"
+        onKeyDown={(e) => (e.key === "Enter") ? insertItem() : null}
       />
-      <button onClick={insertItem}>Enter</button>
+      <button type="submit" onClick={insertItem}>Enter</button>
       </div>
       <div>{listItems}</div>
-      {modalVis && <UpdateModal visible={() => setModalVis(false)} value={updateText} ochandler={(e) => setUpdateText(e.target.value)} updater={() => updateChange(updateText)} errors={modErr}/>} 
+      {modalVis && <UpdateModal visible={() => setModalVis(false)} value={updateText} ochandler={(e) => setUpdateText(e.target.value)} updater={() => updateChange(updateText)} updaterOnKey={(e) => (e.key === "Enter") ? updateChange(updateText): null} errors={modErr}/>} 
     </div>
   );
 }
@@ -85,13 +86,13 @@ function ToDoList({value, del, upd}){
   )
 }
 
-function UpdateModal({visible, updater, value, ochandler, errors }){
+function UpdateModal({visible, updater, updaterOnKey, value, ochandler, errors }){
   return(
     <div className="modal">
       <div className="modal-content">
         <h3>Update Item</h3>
         {errors && <h4>Enter something before submitting</h4>}
-        <input type="text" name="text" placeholder='Update Text' value={value} onChange={ochandler} />
+        <input type="text" name="text" placeholder='Update Text' value={value} onChange={ochandler} onKeyDown={updaterOnKey} />
         <div className="button-container">
           <button className="update-button" onClick={updater}>Update</button>
           <button className="cancel-button" onClick={visible}>Cancel</button>
