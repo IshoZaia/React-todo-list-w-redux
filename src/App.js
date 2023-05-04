@@ -16,6 +16,7 @@ function App({items, add, remove, update}) {
   const [modalVis, setModalVis] = useState(false);
   const [updateText, setUpdateText] = useState("");
   const [ind, setIndex] = useState(-1);
+  const [err, setErr] = useState(false);
 
   const openModal = (i) => {
     setModalVis(true)
@@ -33,13 +34,19 @@ function App({items, add, remove, update}) {
   }
 
  const insertItem = () => {
-  add(text)
-  setText("")
+  if (text === ""){
+    setErr(true)
+  }else{
+    add(text)
+    setText("")
+    setErr(false)
+  }
  }
 
   return (
     <div className="App">
       <h1>To-Do List w/Redux</h1><br/>
+      {err && <h4>Enter something before submitting</h4>}
       <input
         id="input"
         name="text"
