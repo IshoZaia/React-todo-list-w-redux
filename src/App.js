@@ -55,6 +55,7 @@ function App({items, add, remove, update}) {
   return (
     <div className="App">
       <h1>To-Do List w/Redux</h1><br/>
+      <div className="input-btn">
       {err && <h4>Enter something before submitting</h4>}
       <input
         id="input"
@@ -65,6 +66,7 @@ function App({items, add, remove, update}) {
         placeholder="Enter to-do Item"
       />
       <button onClick={insertItem}>Enter</button>
+      </div>
       <div>{listItems}</div>
       {modalVis && <UpdateModal visible={() => setModalVis(false)} value={updateText} ochandler={(e) => setUpdateText(e.target.value)} updater={() => updateChange(updateText)} errors={modErr}/>} 
     </div>
@@ -73,8 +75,8 @@ function App({items, add, remove, update}) {
 
 function ToDoList({value, del, upd}){
   return(
-    <div className="todo-item">
-      <p>{value}</p>
+    <div className="todo-item" >
+      <div className='todo-value'>{value}</div>
       <div className="button-container">
         <button className="delete-button" onClick={del}>X</button>
         <button className="edit-button" onClick={upd}>Edit</button>

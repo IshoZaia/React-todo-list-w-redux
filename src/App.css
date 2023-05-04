@@ -1,3 +1,4 @@
+
 .App {
   font-family: Arial, sans-serif;
   max-width: 700px;
@@ -21,6 +22,12 @@ h4{
   margin-bottom: 30px;
   color:#c0392b
 }
+.input-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 input[type="text"] {
   padding: 10px;
@@ -30,6 +37,7 @@ input[type="text"] {
   margin-right: 10px;
   width: 80%;
   margin: 20 auto;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -41,6 +49,7 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 button:hover {
@@ -66,6 +75,11 @@ button:hover {
 .ToDoList p {
   font-size: 18px;
   margin: 0;
+  font-size: 18px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .ToDoList button {
@@ -91,12 +105,17 @@ button:hover {
   padding: 10px;
   border-radius: 5px;
   background-color: #ffffff;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+
 }
 
-.todo-item p {
+.todo-value {
   margin: 0;
   font-size: 18px;
+  overflow-wrap: break-word;
+  word-break: break-all;
 }
 
 .button-container {
