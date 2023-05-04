@@ -17,6 +17,7 @@ function App({items, add, remove, update}) {
   const [updateText, setUpdateText] = useState("");
   const [ind, setIndex] = useState(-1);
   const [err, setErr] = useState(false);
+  const [modErr, setModErr] = useState(false);
 
   const openModal = (i) => {
     setModalVis(true)
@@ -28,13 +29,19 @@ function App({items, add, remove, update}) {
   });
 
   const updateChange = (changeText) => {
-    update(ind, changeText);
-    setModalVis(false);
-    setUpdateText("")
+    if (updateText.trim() === ""){
+      setModErr(true)
+    }
+    else{
+      update(ind, changeText);
+      setModalVis(false);
+      setUpdateText("")
+      setModErr(false)
+    }
   }
 
  const insertItem = () => {
-  if (text === ""){
+  if (text.trim() === ""){
     setErr(true)
   }else{
     add(text)
@@ -57,7 +64,7 @@ function App({items, add, remove, update}) {
       />
       <button onClick={insertItem}>Enter</button>
       <div>{listItems}</div>
-      {modalVis && <UpdateModal visible={() => setModalVis(false)} value={updateText} ochandler={(e) => setUpdateText(e.target.value)} updater={() => updateChange(updateText)} />} 
+      {modalVis && <UpdateModal visible={() => setModalVis(false)} value={updateText} ochandler={(e) => setUpdateText(e.target.value)} updater={() => updateChange(updateText)} errors={modErr}/>} 
     </div>
   );
 }
@@ -74,11 +81,12 @@ function ToDoList({value, del, upd}){
   )
 }
 
-function UpdateModal({visible, updater, value, ochandler }){
+function UpdateModal({visible, updater, value, ochandler, errors }){
   return(
     <div className="modal">
       <div className="modal-content">
         <h3>Update Item</h3>
+        {errors && <h4>Enter something before submitting</h4>}
         <input type="text" name="text" placeholder='Update Text' value={value} onChange={ochandler} />
         <div className="button-container">
           <button className="update-button" onClick={updater}>Update</button>
