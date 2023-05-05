@@ -1,1 +1,3 @@
-A simple to-do list website built in react that utilizes Redux
+Simple to-do list React.JS application that utilizes Redux(Persist)
+
+Webpage: https://todolist-redux-persist.vercel.app/
